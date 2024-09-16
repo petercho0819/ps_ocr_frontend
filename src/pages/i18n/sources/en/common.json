@@ -1,0 +1,17 @@
+{
+    "confirm": "CONFIRM",
+    "cancel": "CANCEL",
+    "saving": "Saving...",
+    "save": "SAVE",
+    "add": "ADD",
+    "delete": "DELETE",
+    "edit": "EDIT",
+    "are_you_sure_delete": "Are you sure you want to delete?",
+    "if_click_confirm": "If confirms, data will not be restored.",
+    "leave_page": "LEAVE PAGE",
+    "leave_without_saving_title": "Leave without saving?",
+    "leave_without_saving_body_1": "Are you sure you want to leave this page without saving?",
+    "leave_without_saving_body_2": "Any unsaved data will be deleted.",
+    "delete_title": "Are you sure you want to delete?",
+    "delete_body": "If you click confirm, the data gets deleted and can not be restored."
+}

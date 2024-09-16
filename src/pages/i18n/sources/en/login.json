@@ -1,0 +1,21 @@
+{
+  "email": "Email",
+  "password": "Password",
+  "enter_correct_email": "Please enter correct email",
+  "save_id_and_pw": "Save ID & Password",
+  "forgot_pw": "Forgot Password?",
+  "need_enroll": "Need to enroll first?",
+  "sign_up": "Sign Up",
+  "already_account": "Already have an account?",
+  "login": "LOGIN",
+  "next": "NEXT",
+  "get_code": "GET CODE",
+  "resend": "resend",
+  "already_signed_up": "Already signed-up. Please log in with the email to continue.",
+  "not_registered": "Not registered. Please contact the NSC repsentative. ",
+  "time_expired": "Time expired. Please click the resend button to continue.",
+  "log_out": "Log Out",
+  "confirm_log_out": "Are you sure you want to log out?",
+  "cancel": "cancel",
+  "yes": "yes"
+}
