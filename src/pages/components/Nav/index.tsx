@@ -61,10 +61,10 @@ export default function Nav() {
               onClick={handleIconGlobalClick}
             />
 
-            <IconNotify
+            {/* <IconNotify
               sx={{ cursor: 'pointer', width: '40px', height: '40px' }}
               onClick={handleNotificationModalOpen}
-            />
+            /> */}
           </Box>
           <IconProfile
             sx={{ cursor: 'pointer', width: '40px', height: '40px' }}

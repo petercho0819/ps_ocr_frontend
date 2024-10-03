@@ -28,6 +28,7 @@ export default function Login() {
   const [isError, setIsError] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState('');
   const setAccessToken = useAuthStore((state) => state.setAccessToken);
+  const updateUser = useAuthStore((state) => state.updateUser);
 
   const handleButtonClick = async () => {
     // email check
@@ -50,6 +51,7 @@ export default function Login() {
     {
       onSuccess: (data) => {
         setAccessToken(data.token);
+        updateUser(data.userInfo);
         router.replace('/dashboard');
         console.log('onSuccess: loginMutate');
       },
