@@ -52,7 +52,6 @@ const ReceiptRightDetail = ({
 }: ReceiptRightDetailType) => {
   const router = useRouter();
   const user = useAuthStore.getState().user;
-  console.log('🚀 ~ user:', user);
 
   const {
     data: receiptList,
