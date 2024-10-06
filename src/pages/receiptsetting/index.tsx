@@ -1,4 +1,4 @@
-import ReceiptSetting from '../components/ReceiptSetting';
+import ReceiptSetting from '@/components/ReceiptSetting';
 
 export default function ReceiptSettingPage() {
   return (

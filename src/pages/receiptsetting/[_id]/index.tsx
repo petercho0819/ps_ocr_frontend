@@ -1,5 +1,6 @@
 // import AuthGuardProvider from '@/components/Guard/AuthGaurd';
-import ReceiptDetail from '../../components/ReceiptSetting/ReceiptDetail';
+
+import ReceiptDetail from "@/components/ReceiptSetting/ReceiptDetail";
 
 const ReceiptDetailPage = () => {
   return (

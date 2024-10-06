@@ -1,4 +1,4 @@
-import { getMemberInfoByToken } from '@/pages/queries/apis/member';
+import { getMemberInfoByToken } from '@/queries/apis/member';
 import useAuthStore from '@/store/auth.store';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';

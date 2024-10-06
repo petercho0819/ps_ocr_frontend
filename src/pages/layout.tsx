@@ -9,12 +9,11 @@ import React, {
   useState,
 } from 'react';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '@/pages/i18n';
-import SideBar from '@/pages/components/Nav/SiderBar';
+import i18n from '@/i18n';
 // import LeaveModal from '@/components/NscDealership/Modal/LeaveModal';
-import Footer from './components/Common/Footer';
-import Nav from './components/Nav';
-import { getMemberInfoByToken } from './queries/apis/member';
+import { getMemberInfoByToken } from '../queries/apis/member';
+import Nav from '@/components/Nav';
+import SideBar from '@/components/Nav/SiderBar';
 
 const inter = Inter({ subsets: ['latin'] });
 

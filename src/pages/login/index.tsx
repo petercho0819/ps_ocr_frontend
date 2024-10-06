@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '@/pages/i18n';
-import Login from '../components/Login';
+import i18n from '@/i18n';
+import Login from '@/components/Login';
 // import Login from '@/pages/components/Login';
 
 export default function LoginPage() {
