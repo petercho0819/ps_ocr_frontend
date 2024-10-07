@@ -1,16 +1,18 @@
 // ** react
-import React from 'react';
+import React, { useState } from 'react';
 
 // ** mui
 import {
   Box,
   Checkbox,
+  CircularProgress,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  Tooltip,
 } from '@mui/material';
 
 // ** i18n
@@ -36,6 +38,7 @@ import { useRouter } from 'next/navigation';
 import useAuthStore from '@/store/auth.store';
 
 import NoDataBox from '../Common/NoDataBox';
+import NotDevelopedModal from './NotDevelopedModal';
 
 export interface ReceiptRightDetailType {
   handleSelectedYear: (item: string) => void;
@@ -51,6 +54,7 @@ const ReceiptRightDetail = ({
   selectedYear,
 }: ReceiptRightDetailType) => {
   const router = useRouter();
+  const [isNotDevelopedModalOpen, setIsNotDevelopedModalOpen] = useState(false);
   const user = useAuthStore.getState().user;
   console.log('🚀 ~ user:', user);
 
@@ -74,6 +78,9 @@ const ReceiptRightDetail = ({
     };
     downloadReceiptExcelMutation.mutate(excelDownloadDTO);
   };
+
+  const handleNotDevelopedModal = () => setIsNotDevelopedModalOpen(false);
+  const handleDownloadWord = () => setIsNotDevelopedModalOpen(true);
 
   const downloadReceiptExcelMutation = useMutation(
     async (body: Object) => {
@@ -208,7 +215,7 @@ const ReceiptRightDetail = ({
             text={t('receipt:word')}
             size="fontPlus"
             disabled={receiptList?.length == 0}
-            // onClick={handleSaveClick}
+            onClick={handleDownloadWord}
           />
           <GenericButton
             type="button"
@@ -247,35 +254,63 @@ const ReceiptRightDetail = ({
               </ModelRightTableCell>
             </TableRow>
           </TableHead>
-          {receiptList && receiptList.length > 0 ? (
+          {isLoading ? (
+            <>
+              <TableRow>
+                <TableCell
+                  sx={{
+                    height: '400px',
+                    display: 'flex',
+                  }}
+                  rowSpan={7}
+                >
+                  <CircularProgress size={40} />
+                </TableCell>
+              </TableRow>
+              {/* <TableBody>
+                
+              </TableBody> */}
+            </>
+          ) : receiptList && receiptList?.length > 0 ? (
             <>
               <TableBody>
-                {receiptList.map((v: any) => {
+                {receiptList?.map((v: any) => {
                   return (
-                    <TableRow onClick={() => handleListClick(v._id)}>
-                      <ModelRightTableBodyCell>
-                        {v.name || '-'}
-                      </ModelRightTableBodyCell>
-                      <ModelRightTableBodyCell>
-                        {v.price || '-'}
-                      </ModelRightTableBodyCell>
-                      <ModelRightTableBodyCell>
-                        {v.receiptDate || '-'}
-                      </ModelRightTableBodyCell>
-                      <ModelRightTableBodyCell>
-                        {v.numberOfPeople}
-                      </ModelRightTableBodyCell>
-                      <ModelRightTableBodyCell>
-                        {v.memo}
-                      </ModelRightTableBodyCell>
-                      <ModelRightTableBodyCell>
-                        {v?.imgPath ? (
-                          <img height={50} width={100} src={v.imgPath}></img>
-                        ) : (
-                          '-'
-                        )}
-                      </ModelRightTableBodyCell>
-                    </TableRow>
+                    <Tooltip title={t('receipt:click_to_detail')} arrow>
+                      <TableRow
+                        key={v._id}
+                        onClick={() => handleListClick(v._id)}
+                      >
+                        <ModelRightTableBodyCell>
+                          {v.name || '-'}
+                        </ModelRightTableBodyCell>
+                        <ModelRightTableBodyCell>
+                          {v.price || '-'}
+                        </ModelRightTableBodyCell>
+                        <ModelRightTableBodyCell>
+                          {v.receiptDate || '-'}
+                        </ModelRightTableBodyCell>
+
+                        <ModelRightTableBodyCell>
+                          {v.numberOfPeople}
+                        </ModelRightTableBodyCell>
+                        <ModelRightTableBodyCell>
+                          {v.memo}
+                        </ModelRightTableBodyCell>
+                        <ModelRightTableBodyCell>
+                          {v?.imgPath ? (
+                            <img
+                              height={50}
+                              width={100}
+                              src={v.imgPath}
+                              alt="Receipt"
+                            />
+                          ) : (
+                            '-'
+                          )}
+                        </ModelRightTableBodyCell>
+                      </TableRow>
+                    </Tooltip>
                   );
                 })}
               </TableBody>
@@ -320,6 +355,11 @@ const ReceiptRightDetail = ({
         handleClose={handleCloseDeleteVModelModal}
         handleConfirmDelete={handleDeleteVModel}
       /> */}
+      <NotDevelopedModal
+        isOpen={isNotDevelopedModalOpen}
+        // handleClose={handleCloseNotDevelopedModal}
+        handleConfirmDelete={handleNotDevelopedModal}
+      />
     </ModelRightContainer>
   );
 };

@@ -6,6 +6,8 @@
     "add": "ADD",
     "delete": "DELETE",
     "edit": "EDIT",
+    "not_developed_question": "Coming soon",
+    "not_developed_body": "This function is working on it",
     "are_you_sure_delete": "Are you sure you want to delete?",
     "if_click_confirm": "If confirms, data will not be restored.",
     "leave_page": "LEAVE PAGE",
