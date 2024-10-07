@@ -22,7 +22,7 @@ const SideBarMainBox = styled(Box)(() => ({
 const navItems = [
   // { path: '/dashboard', text: 'Dashboard' },
   { path: '/receiptsetting', text: 'Receipt' },
-  { path: '/myPage', text: 'My Page' },
+  { path: '/mypage', text: 'My Page' },
 ];
 
 export default function SideBar() {

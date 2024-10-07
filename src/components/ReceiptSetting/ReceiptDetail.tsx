@@ -254,12 +254,22 @@ const ReceiptDetail = () => {
             <>
               <GenericButton
                 type="button"
-                text={t('common:edit')}
+                disabled={receiptDetail?.isApprove}
+                text={
+                  receiptDetail?.isApprove
+                    ? t('common:approve')
+                    : t('common:edit')
+                }
                 onClick={handleEdit}
               />
               <GenericButton
+                disabled={receiptDetail?.isApprove}
                 type="button"
-                text={t('common:delete')}
+                text={
+                  receiptDetail?.isApprove
+                    ? t('common:approve')
+                    : t('common:delete')
+                }
                 onClick={handleOpenDeleteVModelModal}
               />
             </>

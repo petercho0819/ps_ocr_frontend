@@ -1,3 +1,5 @@
-export default function DashBaordPage() {
-  return <>My Page</>;
+import MyPageSetting from '@/components/MyPage';
+
+export default function MyPagePage() {
+  return <MyPageSetting />;
 }

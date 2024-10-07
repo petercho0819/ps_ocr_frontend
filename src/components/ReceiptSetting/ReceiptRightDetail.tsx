@@ -56,7 +56,6 @@ const ReceiptRightDetail = ({
   const router = useRouter();
   const [isNotDevelopedModalOpen, setIsNotDevelopedModalOpen] = useState(false);
   const user = useAuthStore.getState().user;
-  console.log('🚀 ~ user:', user);
 
   const {
     data: receiptList,
@@ -234,42 +233,44 @@ const ReceiptRightDetail = ({
             }}
           >
             <TableRow sx={{ width: '100%' }}>
-              <ModelRightTableCell sx={{ minWidth: '200px' }}>
+              <ModelRightTableCell sx={{ minWidth: '180px' }}>
                 {t('receipt:name')}
               </ModelRightTableCell>
-              <ModelRightTableCell sx={{ minWidth: '160px' }}>
+              <ModelRightTableCell sx={{ minWidth: '140px' }}>
                 {t('receipt:price')}
               </ModelRightTableCell>
-              <ModelRightTableCell sx={{ minWidth: '160px' }}>
+              <ModelRightTableCell sx={{ minWidth: '130px' }}>
                 {t('receipt:receipt_date')}
               </ModelRightTableCell>
               <ModelRightTableCell sx={{ minWidth: '50px' }}>
                 {t('receipt:number_of_people')}
               </ModelRightTableCell>
-              <ModelRightTableCell sx={{ minWidth: '100px' }}>
+              <ModelRightTableCell sx={{ minWidth: '90px' }}>
                 {t('receipt:memo')}
               </ModelRightTableCell>
-              <ModelRightTableCell sx={{ minWidth: '100px' }}>
+              <ModelRightTableCell sx={{ minWidth: '90px' }}>
                 {t('receipt:image')}
+              </ModelRightTableCell>
+              <ModelRightTableCell sx={{ minWidth: '50px' }}>
+                {t('receipt:approve')}
               </ModelRightTableCell>
             </TableRow>
           </TableHead>
           {isLoading ? (
             <>
-              <TableRow>
-                <TableCell
-                  sx={{
-                    height: '400px',
-                    display: 'flex',
-                  }}
-                  rowSpan={7}
-                >
-                  <CircularProgress size={40} />
-                </TableCell>
-              </TableRow>
-              {/* <TableBody>
-                
-              </TableBody> */}
+              <TableBody>
+                <TableRow>
+                  <TableCell
+                    sx={{
+                      height: '400px',
+                      display: 'flex',
+                    }}
+                    rowSpan={8}
+                  >
+                    <CircularProgress size={40} />
+                  </TableCell>
+                </TableRow>
+              </TableBody>
             </>
           ) : receiptList && receiptList?.length > 0 ? (
             <>
@@ -308,6 +309,9 @@ const ReceiptRightDetail = ({
                           ) : (
                             '-'
                           )}
+                        </ModelRightTableBodyCell>
+                        <ModelRightTableBodyCell>
+                          {v?.isApprove ? 'Y' : 'N'}
                         </ModelRightTableBodyCell>
                       </TableRow>
                     </Tooltip>

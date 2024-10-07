@@ -11,7 +11,6 @@ import React, {
 import { I18nextProvider } from 'react-i18next';
 import i18n from '@/i18n';
 // import LeaveModal from '@/components/NscDealership/Modal/LeaveModal';
-import { getMemberInfoByToken } from '../queries/apis/member';
 import Nav from '@/components/Nav';
 import SideBar from '@/components/Nav/SiderBar';
 
@@ -29,16 +28,15 @@ export default function RootLayout({
   const [targetPath, setTargetPath] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchMemberInfo = async () => {
-      try {
-        const response = await getMemberInfoByToken();
-        setMemberInfo(response.data);
-      } catch (error) {
-        console.error('Error fetching member info:', error);
-      }
-    };
-
-    fetchMemberInfo();
+    // const fetchMemberInfo = async () => {
+    //   try {
+    //     const response = await getMemberInfoByToken();
+    //     setMemberInfo(response.data);
+    //   } catch (error) {
+    //     console.error('Error fetching member info:', error);
+    //   }
+    // };
+    // fetchMemberInfo();
   }, []);
 
   // const handleOpenLeaveModal = (path: string | null) => {
