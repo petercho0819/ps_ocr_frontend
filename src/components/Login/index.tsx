@@ -28,6 +28,7 @@ export default function Login() {
   const [errorMsg, setErrorMsg] = useState('');
   const setAccessToken = useAuthStore((state) => state.setAccessToken);
   const updateUser = useAuthStore((state) => state.updateUser);
+  const user = useAuthStore?.getState()?.user;
 
   const handleButtonClick = async () => {
     // email check
@@ -54,7 +55,7 @@ export default function Login() {
       onSuccess: (data) => {
         setAccessToken(data.token);
         updateUser(data.userInfo);
-        if (data?.userInfo?.role == 'ADMIN') router.replace('/receiptlist');
+        if (data.userInfo?.role == 'ADMIN') router.replace('/receiptlist');
         else router.replace('/receiptsetting');
         console.log('onSuccess: loginMutate');
       },
