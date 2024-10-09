@@ -23,7 +23,7 @@ import { useQuery } from 'react-query';
 import { getMemberDetail } from '@/queries/apis/member';
 import useAuthStore from '@/store/auth.store';
 
-const MyPageSetting = () => {
+const Member = () => {
   const user = useAuthStore.getState().user;
   const {
     data: memberDetail,
@@ -170,4 +170,4 @@ const MyPageSetting = () => {
   );
 };
 
-export default MyPageSetting;
+export default Member;

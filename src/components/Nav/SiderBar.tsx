@@ -25,6 +25,7 @@ const navItems =
   user?.role == 'ADMIN'
     ? [
         { path: '/receiptlist', text: 'Receipt' },
+        { path: '/member', text: 'Member' },
         { path: '/mypage', text: 'My Page' },
       ]
     : [

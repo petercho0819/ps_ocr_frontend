@@ -16,6 +16,7 @@ import useAuthStore from '@/store/auth.store';
 import { logo } from '@/assets/images';
 import login from '@/queries/auth';
 import Footer from '../Common/Footer';
+import { createEncryptData } from '@/utils/crypto';
 export default function Login() {
   const router = useRouter();
   const [secretKey, setSecretKey] = useState('');
@@ -43,7 +44,10 @@ export default function Login() {
 
   const loginMutate = useMutation(
     async (body: any) => {
-      const response = await login(body);
+      const value = await createEncryptData(
+        JSON.stringify({ email, time: new Date() }),
+      );
+      const response = await login(value);
       return response.data;
     },
     {
