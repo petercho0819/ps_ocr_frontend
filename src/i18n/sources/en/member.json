@@ -1,0 +1,12 @@
+{
+    "member": "Member list",
+    "no_member": "There is no member. Please add members",
+    "email": "Email",
+    "role": "Role",
+    "active": "Active",
+    "created": "Created At",
+    "company_name": "Company Name",
+    "manager_deleted": "Manager account cannot be deleted",
+    "adjustment_nsc_only": "Please unselect the Admin account",
+    "name": "Name"
+}

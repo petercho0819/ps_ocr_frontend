@@ -7,6 +7,7 @@ import IconDashboardGray from '../Icon/IconDashboardGray';
 import IconDashboardWhite from '../Icon/IconDashboardWhite';
 import IconNavMember from '../Icon/IconNavMember';
 import IconNavMemberWhite from '../Icon/IconNavMemberWhite';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 type ButtonSize = 'maxl' | 'xl' | 'default' | 'small' | 'xs';
 interface ColorButtonProps extends Omit<ButtonProps, 'size'> {
   size?: ButtonSize;
@@ -129,6 +130,8 @@ const ColorButton: React.FC<ColorButtonProps> = ({
           (isActive || isFocused ? <ReceiptLongIcon /> : <ReceiptLongIcon />)}
         {text === 'My Page' &&
           (isActive || isFocused ? <IconNavMemberWhite /> : <IconNavMember />)}
+        {text === 'Member' &&
+          (isActive || isFocused ? <PersonSearchIcon /> : <PersonSearchIcon />)}
         {text}
       </Box>
     </Button>

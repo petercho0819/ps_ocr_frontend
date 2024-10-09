@@ -1,16 +1,18 @@
 // ** react
-import React from 'react';
+import React, { useState } from 'react';
 
 // ** mui
 import {
   Box,
   Checkbox,
+  CircularProgress,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  Tooltip,
 } from '@mui/material';
 
 // ** i18n
@@ -31,11 +33,12 @@ import {
 import GenericButton from '../Button/GenericButton';
 import PrimaryBlueButton from '../Button/PrimaryBlueButton';
 import { useMutation, useQuery } from 'react-query';
-import getReceiptList, { downloadReceiptExcel } from '@/queries/apis/receipt';
+import { getReceiptList, downloadReceiptExcel } from '@/queries/apis/receipt';
 import { useRouter } from 'next/navigation';
 import useAuthStore from '@/store/auth.store';
 
 import NoDataBox from '../Common/NoDataBox';
+import NotDevelopedModal from './NotDevelopedModal';
 
 export interface ReceiptRightDetailType {
   handleSelectedYear: (item: string) => void;
@@ -51,6 +54,7 @@ const ReceiptRightDetail = ({
   selectedYear,
 }: ReceiptRightDetailType) => {
   const router = useRouter();
+  const [isNotDevelopedModalOpen, setIsNotDevelopedModalOpen] = useState(false);
   const user = useAuthStore.getState().user;
 
   const {
@@ -73,6 +77,9 @@ const ReceiptRightDetail = ({
     };
     downloadReceiptExcelMutation.mutate(excelDownloadDTO);
   };
+
+  const handleNotDevelopedModal = () => setIsNotDevelopedModalOpen(false);
+  const handleDownloadWord = () => setIsNotDevelopedModalOpen(true);
 
   const downloadReceiptExcelMutation = useMutation(
     async (body: Object) => {
@@ -207,7 +214,7 @@ const ReceiptRightDetail = ({
             text={t('receipt:word')}
             size="fontPlus"
             disabled={receiptList?.length == 0}
-            // onClick={handleSaveClick}
+            onClick={handleDownloadWord}
           />
           <GenericButton
             type="button"
@@ -226,55 +233,88 @@ const ReceiptRightDetail = ({
             }}
           >
             <TableRow sx={{ width: '100%' }}>
-              <ModelRightTableCell sx={{ minWidth: '200px' }}>
+              <ModelRightTableCell sx={{ minWidth: '180px' }}>
                 {t('receipt:name')}
               </ModelRightTableCell>
-              <ModelRightTableCell sx={{ minWidth: '160px' }}>
+              <ModelRightTableCell sx={{ minWidth: '140px' }}>
                 {t('receipt:price')}
               </ModelRightTableCell>
-              <ModelRightTableCell sx={{ minWidth: '160px' }}>
+              <ModelRightTableCell sx={{ minWidth: '130px' }}>
                 {t('receipt:receipt_date')}
               </ModelRightTableCell>
               <ModelRightTableCell sx={{ minWidth: '50px' }}>
                 {t('receipt:number_of_people')}
               </ModelRightTableCell>
-              <ModelRightTableCell sx={{ minWidth: '100px' }}>
+              <ModelRightTableCell sx={{ minWidth: '90px' }}>
                 {t('receipt:memo')}
               </ModelRightTableCell>
-              <ModelRightTableCell sx={{ minWidth: '100px' }}>
+              <ModelRightTableCell sx={{ minWidth: '90px' }}>
                 {t('receipt:image')}
+              </ModelRightTableCell>
+              <ModelRightTableCell sx={{ minWidth: '50px' }}>
+                {t('receipt:approve')}
               </ModelRightTableCell>
             </TableRow>
           </TableHead>
-          {receiptList && receiptList.length > 0 ? (
+          {isLoading ? (
             <>
               <TableBody>
-                {receiptList.map((v: any) => {
+                <TableRow>
+                  <TableCell
+                    sx={{
+                      height: '400px',
+                      display: 'flex',
+                    }}
+                    rowSpan={8}
+                  >
+                    <CircularProgress size={40} />
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </>
+          ) : receiptList && receiptList?.length > 0 ? (
+            <>
+              <TableBody>
+                {receiptList?.map((v: any) => {
                   return (
-                    <TableRow onClick={() => handleListClick(v._id)}>
-                      <ModelRightTableBodyCell>
-                        {v.name || '-'}
-                      </ModelRightTableBodyCell>
-                      <ModelRightTableBodyCell>
-                        {v.price || '-'}
-                      </ModelRightTableBodyCell>
-                      <ModelRightTableBodyCell>
-                        {v.receiptDate || '-'}
-                      </ModelRightTableBodyCell>
-                      <ModelRightTableBodyCell>
-                        {v.numberOfPeople}
-                      </ModelRightTableBodyCell>
-                      <ModelRightTableBodyCell>
-                        {v.memo}
-                      </ModelRightTableBodyCell>
-                      <ModelRightTableBodyCell>
-                        {v?.imgPath ? (
-                          <img height={50} width={100} src={v.imgPath}></img>
-                        ) : (
-                          '-'
-                        )}
-                      </ModelRightTableBodyCell>
-                    </TableRow>
+                    <Tooltip title={t('receipt:click_to_detail')} arrow>
+                      <TableRow
+                        key={v._id}
+                        onClick={() => handleListClick(v._id)}
+                      >
+                        <ModelRightTableBodyCell>
+                          {v.name || '-'}
+                        </ModelRightTableBodyCell>
+                        <ModelRightTableBodyCell>
+                          {v.price || '-'}
+                        </ModelRightTableBodyCell>
+                        <ModelRightTableBodyCell>
+                          {v.receiptDate || '-'}
+                        </ModelRightTableBodyCell>
+
+                        <ModelRightTableBodyCell>
+                          {v.numberOfPeople}
+                        </ModelRightTableBodyCell>
+                        <ModelRightTableBodyCell>
+                          {v.memo}
+                        </ModelRightTableBodyCell>
+                        <ModelRightTableBodyCell>
+                          {v?.imgPath ? (
+                            <img
+                              height={50}
+                              width={100}
+                              src={v.imgPath}
+                              alt="Receipt"
+                            />
+                          ) : (
+                            '-'
+                          )}
+                        </ModelRightTableBodyCell>
+                        <ModelRightTableBodyCell>
+                          {v?.isApprove ? 'Y' : 'N'}
+                        </ModelRightTableBodyCell>
+                      </TableRow>
+                    </Tooltip>
                   );
                 })}
               </TableBody>
@@ -319,6 +359,11 @@ const ReceiptRightDetail = ({
         handleClose={handleCloseDeleteVModelModal}
         handleConfirmDelete={handleDeleteVModel}
       /> */}
+      <NotDevelopedModal
+        isOpen={isNotDevelopedModalOpen}
+        // handleClose={handleCloseNotDevelopedModal}
+        handleConfirmDelete={handleNotDevelopedModal}
+      />
     </ModelRightContainer>
   );
 };

@@ -1,4 +1,5 @@
 {
+    "click_to_detail": "Click this to see the details",
     "excel": "EXCEL",
     "word": "WORD",
     "required_fields": "Require Fields",
@@ -9,7 +10,7 @@
     "number_of_people": "Number of People",
     "memo": "Memo",
     "no_data_title": "No Receipt Data",
-    "no_data_sub": "Please select other month",
+    "no_data_sub": "Please select other month or add a new receipt",
     "add_a_new_receipt": "Add a new receipt",
     "select_receipt_type": "Select Receipt type",
     "dinner_fee": "Dinner fee",

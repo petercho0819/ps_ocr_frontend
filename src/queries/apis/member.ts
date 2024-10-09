@@ -1,34 +1,14 @@
-import { MemberDetail } from '@/common/types/member';
 import apiInstance from './axios';
-import { ApiServerResponse } from '@/common/types/apis';
 
-const memberPath = 'nsc-member';
+const memberPath = 'users';
 
-const getNscMemberList = async () =>
-  await apiInstance.get(`${memberPath}/list`);
-export default getNscMemberList;
-export const getNscMemberInfo = async (email: string) =>
+export const getMemberDetail = async (email: string) =>
   await apiInstance.get(`${memberPath}/${email}`);
 
-export const createNscMember = async (data: MemberDetail) =>
-  await apiInstance.post<ApiServerResponse<MemberDetail>>(
-    `${memberPath}`,
-    data,
-  );
+export const getMemberListByAdmin = async () =>
+  await apiInstance.get(`${memberPath}/admin/list`);
 
-export const updateNscMember = async (data: MemberDetail, email: string) =>
-  await apiInstance.put<ApiServerResponse<MemberDetail>>(
-    `${memberPath}/${email}`,
-    data,
-  );
-
-export const deleteNscmembers = async (
-  nscEmailToDelete: (string | undefined)[],
-) => {
-  await apiInstance.delete<ApiServerResponse<MemberDetail>>(`${memberPath}`, {
+export const deleteMember = async (nscEmailToDelete: string[]) =>
+  await apiInstance.delete(`${memberPath}`, {
     data: { emails: nscEmailToDelete },
   });
-};
-
-export const getMemberInfoByToken = async () =>
-  await apiInstance.get(`${memberPath}`);

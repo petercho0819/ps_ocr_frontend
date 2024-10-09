@@ -1,3 +1,4 @@
+export const LOGIN_KEY = process.env.NEXT_PUBLIC__LOGIN_KEY;
 export const AUTH_SERVER_URL = process.env.NEXT_PUBLIC__AUTH_SERVER_URL;
 export const RECEIPT_SERVER_URL = process.env.NEXT_PUBLIC__RECEIPT_SERVER_URL;
 export const baseURL = `${AUTH_SERVER_URL}`;

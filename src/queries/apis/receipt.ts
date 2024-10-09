@@ -3,12 +3,15 @@ import receiptApiInstance from './axios/receipt';
 
 const receiptPath = 'receipt';
 
-const getReceiptList = async (year: string, month: string) =>
+export const getReceiptList = async (year: string, month: string) =>
   await receiptApiInstance.get(
     `${receiptPath}/list/yearAndMonth?searchValue=&year=${year}&month=${month}&page=1&limit=10`,
   );
 
-export default getReceiptList;
+export const getReceiptListByAdmin = async (year: string, month: string) =>
+  await receiptApiInstance.get(
+    `${receiptPath}/admin/list/yearAndMonth?searchValue=&year=${year}&month=${month}&page=1&limit=10`,
+  );
 
 export const getReceiptDetailById = async (_id: string) =>
   await receiptApiInstance.get<any>(`${receiptPath}/detail/${_id}`);

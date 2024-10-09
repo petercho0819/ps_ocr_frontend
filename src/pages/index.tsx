@@ -8,8 +8,6 @@ const Page = () => {
     const lowercasePath = router.pathname.toLowerCase();
     if (lowercasePath === '/') {
       router.replace(LOGIN_PATH);
-      // router.replace(LOGIN_PATH);
-      // router.replace('/testPage');
     }
   }, [router]);
   return <></>;
