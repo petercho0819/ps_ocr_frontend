@@ -33,7 +33,7 @@ import {
 import GenericButton from '../Button/GenericButton';
 import PrimaryBlueButton from '../Button/PrimaryBlueButton';
 import { useMutation, useQuery } from 'react-query';
-import getReceiptList, { downloadReceiptExcel } from '@/queries/apis/receipt';
+import { getReceiptList, downloadReceiptExcel } from '@/queries/apis/receipt';
 import { useRouter } from 'next/navigation';
 import useAuthStore from '@/store/auth.store';
 

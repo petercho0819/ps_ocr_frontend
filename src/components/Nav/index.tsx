@@ -5,7 +5,7 @@ import ProfileModal from './Profile/ProfileModal';
 import LanguageChangeModal from './LanguageChange/LanguageChangeModal';
 import NotificationModal from './Notification/NotificationModal';
 import IconGlobal from '../Icon/IconGlobal';
-import LogoMyWork from '../Icon/LogoMyWork';
+import { logo } from '@/assets/images';
 
 export default function Nav() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -47,7 +47,7 @@ export default function Nav() {
           borderBottom: '1px solid #E4DCD3',
         }}
       >
-        <LogoMyWork />
+        <img width={150} height={40} src={logo.src} />
         <Box
           sx={{
             display: 'flex',

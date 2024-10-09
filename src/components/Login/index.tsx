@@ -50,7 +50,8 @@ export default function Login() {
       onSuccess: (data) => {
         setAccessToken(data.token);
         updateUser(data.userInfo);
-        router.replace('/receiptsetting');
+        if (data?.userInfo?.role == 'ADMIN') router.replace('/receiptlist');
+        else router.replace('/receiptsetting');
         console.log('onSuccess: loginMutate');
       },
       onError: (error) => {
