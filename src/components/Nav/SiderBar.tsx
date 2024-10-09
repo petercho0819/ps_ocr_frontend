@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ColorButton from '../Button/ColorButton';
 import useAuthStore from '@/store/auth.store';
+import { useEffect, useState } from 'react';
 
 const SideBarMainBox = styled(Box)(() => ({
   height: '100%',
@@ -19,21 +20,36 @@ const SideBarMainBox = styled(Box)(() => ({
   gap: '8px',
   overflowY: 'auto',
 }));
-const user = useAuthStore.getState().user;
-
-const navItems =
-  user?.role == 'ADMIN'
-    ? [
-        { path: '/receiptlist', text: 'Receipt' },
-        { path: '/member', text: 'Member' },
-        { path: '/mypage', text: 'My Page' },
-      ]
-    : [
-        { path: '/receiptSetting', text: 'Receipt' },
-        { path: '/mypage', text: 'My Page' },
-      ];
 
 export default function SideBar() {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const checkAndUpdateUser = () => {
+      const currentUser = useAuthStore.getState().user;
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        // 사용자 정보가 없다면 잠시 후 다시 확인
+        setTimeout(checkAndUpdateUser, 100);
+      }
+    };
+
+    checkAndUpdateUser();
+  }, []);
+
+  const navItems =
+    //@ts-ignore
+    user?.role == 'ADMIN'
+      ? [
+          { path: '/receiptlist', text: 'Receipt' },
+          { path: '/member', text: 'Member' },
+          { path: '/mypage', text: 'My Page' },
+        ]
+      : [
+          { path: '/receiptsetting', text: 'Receipt' },
+          { path: '/mypage', text: 'My Page' },
+        ];
   const { pathname } = useRouter();
 
   return (
