@@ -26,12 +26,12 @@ export default function SideBar() {
 
   useEffect(() => {
     const checkAndUpdateUser = () => {
-      const currentUser = useAuthStore.getState().user;
+      const currentUser = useAuthStore.getState()?.user;
       if (currentUser) {
         setUser(currentUser);
       } else {
         // 사용자 정보가 없다면 잠시 후 다시 확인
-        setTimeout(checkAndUpdateUser, 100);
+        checkAndUpdateUser();
       }
     };
 
@@ -44,7 +44,6 @@ export default function SideBar() {
       ? [
           { path: '/receiptlist', text: 'Receipt' },
           { path: '/member', text: 'Member' },
-          // { path: '/mypage', text: 'My Page' },
         ]
       : [
           { path: '/receiptsetting', text: 'Receipt' },
