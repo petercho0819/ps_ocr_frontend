@@ -1,5 +1,5 @@
-import MyPageSetting from '@/components/MyPage';
+import MyPage from '@/components/MyPage';
 
 export default function MyPagePage() {
-  return <MyPageSetting />;
+  return <MyPage />;
 }
