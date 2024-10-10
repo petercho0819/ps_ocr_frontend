@@ -100,6 +100,7 @@ const NotificationModal = ({
   const handleDetailsModalClose = () => setIsDetailModalOpen(false);
 
   const handleItemSelected = (item: string) => {
+    console.log('Selected item:', item);
   };
   return (
     <ProfileModalContainer
