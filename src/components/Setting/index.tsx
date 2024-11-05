@@ -60,6 +60,7 @@ const Setting = () => {
 
   const handleSave = async () => {
     try {
+      //@ts-ignore
       await updateMutation.mutateAsync(formValues);
     } catch (error) {
       console.error('Failed to update settings:', error);
