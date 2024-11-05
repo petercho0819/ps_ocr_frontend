@@ -1,16 +1,14 @@
-import { color } from "@/theme/color";
-import { Box, Typography } from "@mui/material";
+import { color } from '@/theme/color';
+import { Box, Typography } from '@mui/material';
 
 const Footer = () => {
   return (
-    <Box sx={{ padding: "16px 0", display: "flex", justifyContent: "center" }}>
+    <Box sx={{ padding: '16px 0', display: 'flex', justifyContent: 'center' }}>
       <Typography
-        sx={{ textAlign: "center" }}
+        sx={{ textAlign: 'center' }}
         variant="h6"
         color={color.text.black_40}
-      >
-        © Copyright 2022 Hyundai Motor Company. All rights reserved.
-      </Typography>
+      ></Typography>
     </Box>
   );
 };

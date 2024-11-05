@@ -3,5 +3,7 @@
     "email": "Email",
     "role": "Role",
     "company_name": "Company Name",
-    "name": "Name"
+    "name": "Name",
+    "date_of_remind_receipt": "Receipt Remind Date",
+    "setting": "Setting"
 }

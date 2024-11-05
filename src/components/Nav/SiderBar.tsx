@@ -44,6 +44,7 @@ export default function SideBar() {
       ? [
           { path: '/receiptlist', text: 'Receipt' },
           { path: '/member', text: 'Member' },
+          { path: '/setting', text: 'Setting' },
         ]
       : [
           { path: '/receiptsetting', text: 'Receipt' },
